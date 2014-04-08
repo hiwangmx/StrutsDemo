@@ -8,6 +8,9 @@
 	<!-- 设置常量，也可以在src目录下写struts.properties来覆盖struts2.0底层默认配置文件default.properties中的核心参数配置 -->
 	<constant name="struts.i18n.encoding" value="utf-8"/>
 
+	<!-- 开发提示：出错时打印更详细的信息 -->
+	<constant name="struts.devMode" value="true"/>
+
 	<!-- 
 		action-type 属性
 			chain  :   用来处理Action链
