@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+    
+<struts>
+
+	<!-- 
+		action-type 属性
+			chain  :   用来处理Action链
+			dispatcher   :   默认 用来转向页面，通常是JSP页面
+			freeMarker   :   处理FreeMarker模块
+			httpHeader   :   用来控制特殊的Http行为
+			redirect     :   重定向一个URL
+			redirect-action  :    重定向一个Action
+			stream       :   向浏览器发送InputSream对象，通常用来处理文件下载
+			velocity     :   处理Velocity模板
+			xslt         :   处理XML/XLST模板
+			plaintext    :   显示原始文件内容，例如文件源代码
+			tiles        :   结合Tile使用
+			另外第三方的Result类型还包括JasperReports Plugin，专门用来处理JasperReport类型的报表输出；Jfreechart Plugin；JSF Plugin。
+	 -->
+	 
+	<include file="struts/config/struts-login.xml"></include>
+
+	<package name="default" extends="struts-default">
+		
+		
+		<!--default-action-ref :  默认的Action,当匹配不到acion时，将使用默认的acion来处理用户的请求 -->
+		<default-action-ref name="error"/>
+		<action name="error">
+			<result>/error.jsp</result>
+		</action>
+		
+	</package>
+	
+</struts>
