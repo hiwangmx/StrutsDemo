@@ -9,5 +9,7 @@
 </head>
 <body>
 	<s:property value="exception"/> <!-- 输出异常对象 -->
+	<s:property value="exceptionStack"/> <!-- 输出异常对象的堆栈信息： -->
+	<s:property value="exception.message"/> <!-- 输出异常信息 -->
 </body>
 </html>
