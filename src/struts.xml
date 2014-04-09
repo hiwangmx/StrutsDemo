@@ -39,7 +39,6 @@
 				<interceptor-ref name="loginInterceptor"/>
 				<interceptor-ref name="defaultStack"/>
 			</interceptor-stack>
-			
 		</interceptors>
 		
 		<!-- 设定默认的拦截器 ， 其中默认的拦截器defaultStack必须要引人 -->

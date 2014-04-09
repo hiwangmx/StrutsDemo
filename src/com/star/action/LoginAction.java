@@ -2,9 +2,11 @@ package com.star.action;
 
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ModelDriven;
 import com.star.action.base.BaseAction;
 import com.star.bean.BaseMode;
@@ -12,9 +14,6 @@ import com.star.bean.BaseMode;
 @SuppressWarnings("serial")
 public class LoginAction extends BaseAction implements SessionAware,ModelDriven<BaseMode>{
 	
-	private static final String USER_NAME = "userName";
-	private static final String PASSWORD = "password";
-
 	private Logger logger = Logger.getLogger(BaseAction.class);
 	
 	private Map session;
@@ -22,9 +21,19 @@ public class LoginAction extends BaseAction implements SessionAware,ModelDriven<
 	
 	public String login(){
 		logger.info("loginactino login");
-		session.put(USER_NAME, "张三");
-		session.put(PASSWORD, "123456");
-		return "success";
+		baseMode = baseMode == null ? new BaseMode() : baseMode;
+		String userName = baseMode.getUserName();
+		String password = baseMode.getPassword();
+		if(StringUtils.isNotBlank(userName) && StringUtils.isNotBlank(password)){
+			session.put(USER_NAME, userName);
+			session.put(PASSWORD, password);
+			this.setMessage("Login Success");
+			return Action.SUCCESS;
+		}else{
+			logger.info("loginactino login userName or password is null");
+			this.setMessage("Login Failure");
+			return Action.INPUT;
+		}
 	}
 	
 	public String loginExcep() throws Exception{

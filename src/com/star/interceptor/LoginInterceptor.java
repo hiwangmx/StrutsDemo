@@ -54,7 +54,7 @@ public class LoginInterceptor implements Interceptor{
 			if(StringUtils.isNotBlank(userName)){
 				return actionInvocation.invoke();
 			}else{
-				return "failure";
+				return actionInvocation.invoke();
 			}
 		}
 	}
