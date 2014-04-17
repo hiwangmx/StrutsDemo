@@ -20,7 +20,7 @@
         <result-types>
             <result-type name="chart" class="org.apache.struts2.dispatcher.ChartResult"></result-type>
         </result-types>
-        <action name="JFreeChartAction" class="com.star.action.LoginAction" method="chart">
+        <action name="JFreeChartAction*" class="com.star.action.LoginAction" method="{1}">
               <result type="chart"> 
                    <param name="width">800</param>
                    <param name="height">400</param>
