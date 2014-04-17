@@ -2,7 +2,7 @@ package com.star.chart;
 
 import java.util.Map;
 
-public class ChartInfo {
+public class PieChartInfo {
 
 	private String title;
 	private String subtitle;
