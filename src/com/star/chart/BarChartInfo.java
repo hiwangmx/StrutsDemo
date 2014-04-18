@@ -1,8 +1,7 @@
 package com.star.chart;
 
-public class BarChartInfo {
+public class BarChartInfo  extends BaseChartInfo{
 
-	private String title;
 	private String columName;
 	private String valueName;
 	private String[] rowKeys;
@@ -23,14 +22,6 @@ public class BarChartInfo {
 
 	public void setValueName(String valueName) {
 		this.valueName = valueName;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public String[] getRowKeys() {
