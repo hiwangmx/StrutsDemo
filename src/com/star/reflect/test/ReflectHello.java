@@ -1,5 +1,6 @@
 package com.star.reflect.test;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -8,7 +9,7 @@ import java.lang.reflect.Modifier;
 
 public class ReflectHello {
 
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException {
 		ReflectHello reflectHello = new ReflectHello();
 		//获取方法名（包括包名）
 		System.out.println(reflectHello.getClass().getName());
@@ -121,6 +122,31 @@ public class ReflectHello {
 		Person person1 = (Person) person.newInstance();
 		setter(person1, "Name", "ss", String.class);
 		System.out.println(getter(person1, "Name"));
+		
+		//属性值
+		person1 = (Person) person.newInstance();
+		Field field2 = person.getDeclaredField("name");
+		field2.setAccessible(true);
+		field2.set(person1, "adf");
+		System.out.println(field2.get(person1));
+		
+		//修改数组值
+		int[] temp = {1, 2, 3, 4};
+		Class<?> arrayClass = temp.getClass().getComponentType();
+		System.out.println("数组类型：" + arrayClass.getName());
+		System.out.println("数组长度：" + Array.getLength(temp));
+		System.out.println("第一个值：" + Array.get(temp, 0));
+		Array.set(temp, 0, 100);
+		System.out.println("修改之后第一个值：" + Array.get(temp, 0));
+		
+		//数组
+		int[] temp1 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+		int[] newTemp1 = (int[]) arrayInc(temp1, 3);
+		print(newTemp1);
+		char[] c = {'a', 'b', 'c'};
+		char[] newC = (char[]) arrayInc(c, 5);
+		print(newC);
+		  
 	}
 	
 	public static void setter(Object obj, String attr, Object value, Class<?> type) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
@@ -132,6 +158,31 @@ public class ReflectHello {
 		Method method = obj.getClass().getMethod("get" + attr);
 		Object returnObj = method.invoke(obj);
 		return returnObj;
+	}
+	
+	public static Object arrayInc(Object obj, int len){
+		Class<?> objClass = obj.getClass().getComponentType();
+		Object newObj = Array.newInstance(objClass, len);
+		int co = Array.getLength(obj);
+		if(co > len){
+			System.arraycopy(obj, 0, newObj, 0, len);
+		}else{
+			System.arraycopy(obj, 0, newObj, 0, co);
+		}
+		return newObj;
+	}
+	
+	public static void print(Object obj){
+		Class<?> clazz = obj.getClass();
+		if(!clazz.isArray()){
+			System.out.println("不是数组");
+		}else{
+			System.out.println("数组长度：" + Array.getLength(obj));
+			for(int i = 0;i<Array.getLength(obj); i++){
+				System.out.print(Array.get(obj, i) + " ");
+			}
+			System.out.println();
+		}
 	}
 	
 }
