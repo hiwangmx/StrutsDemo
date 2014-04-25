@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class PieChartInfo  extends BaseChartInfo{
 
-	private Map<String, Integer> values;
+	private Map<String, Number> values;
 
 	public PieChartInfo(){
 		
@@ -15,11 +15,11 @@ public class PieChartInfo  extends BaseChartInfo{
 		this.setSubtitle(subtitle);
 	}
 	
-	public Map<String, Integer> getValues() {
+	public Map<String, Number> getValues() {
 		return values;
 	}
 
-	public void setValues(Map<String, Integer> values) {
+	public void setValues(Map<String, Number> values) {
 		this.values = values;
 	}
 

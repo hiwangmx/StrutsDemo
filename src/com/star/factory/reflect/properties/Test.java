@@ -11,6 +11,8 @@ public class Test {
 		Properties pro = Init.getPro();
 		Fruit fruit = Factory.getInstance(pro.getProperty("Banana"));
 		fruit.eat();
+		Long ll = 11L;
+		System.out.println(Long.valueOf(String.valueOf(ll)));
 	}
 	
 }

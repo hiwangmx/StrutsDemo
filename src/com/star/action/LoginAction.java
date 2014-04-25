@@ -23,7 +23,7 @@ public class LoginAction extends BaseAction implements SessionAware,
 
 	private Logger logger = Logger.getLogger(BaseAction.class);
 	private JFreeChart chart;
-	private Map session;
+	private Map<String, Object> session;
 	private BaseMode baseMode = new BaseMode();
 
 	public String login() {
@@ -53,7 +53,7 @@ public class LoginAction extends BaseAction implements SessionAware,
 		PieChartInfo chartInfo = new PieChartInfo();
 		chartInfo.setTitle("XX某季度业绩");
 		chartInfo.setSubtitle("第一季");
-		Map<String, Integer> map = new HashMap<String, Integer>();
+		Map<String, Number> map = new HashMap<String, Number>();
 		map.put("01月", 100);
 		map.put("02月", 200);
 		map.put("03月", 300);

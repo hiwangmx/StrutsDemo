@@ -119,16 +119,16 @@ public class ChartUtil {
 		 * @param map
 		 * @return
 		 */
-		public static DefaultPieDataset createPieDataset(Map<String, Integer> map) {
+		public static DefaultPieDataset createPieDataset(Map<String, Number> map) {
 			if (null == map || map.size() == 0) {
 				return null;
 			}
 			DefaultPieDataset dataset = new DefaultPieDataset();
-			Iterator<Entry<String, Integer>> iterator = map.entrySet().iterator();
+			Iterator<Entry<String, Number>> iterator = map.entrySet().iterator();
 			while (iterator.hasNext()) {
-				Entry<String, Integer> entity = iterator.next();
+				Entry<String, Number> entity = iterator.next();
 				String key = entity.getKey();
-				Integer value = entity.getValue();
+				Number value = entity.getValue();
 				dataset.setValue(key, value);
 			}
 			return dataset;

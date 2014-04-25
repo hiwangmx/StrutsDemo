@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 import com.star.action.LoginAction;
-import com.star.action.base.BaseAction;
 
 /**
  * 自定义拦截器必须要 实现Interceptor接口 或者 继承AbstractInterceptor类
@@ -16,6 +15,11 @@ import com.star.action.base.BaseAction;
  *
  */
 public class LoginInterceptor implements Interceptor{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3456751972743188944L;
 
 	private final Logger logger = Logger.getLogger(LoginInterceptor.class);
 	
@@ -49,7 +53,7 @@ public class LoginInterceptor implements Interceptor{
 		if(action instanceof LoginAction){
 			return actionInvocation.invoke();
 		}else{
-			Map session = actionInvocation.getInvocationContext().getSession();
+			Map<String, Object> session = actionInvocation.getInvocationContext().getSession();
 			String userName = (String)session.get(USER_NAME);
 			if(StringUtils.isNotBlank(userName)){
 				return actionInvocation.invoke();
