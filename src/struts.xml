@@ -28,6 +28,7 @@
 	 -->
 	 
 	<include file="struts/config/struts-login.xml"></include>
+	<include file="struts/config/struts-upload.xml"></include>
 
 	<package name="default" extends="struts-default">
 		
