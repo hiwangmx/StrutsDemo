@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN"
+    "http://getahead.org/dwr/dwr30.dtd">
+
+    
+<dwr>
+
+	<!-- 
+		allow标签中包括可以暴露给javascript访问的东西。
+		create标签中指定javascript中可以访问的java类，并定义DWR应当如何获的要
+				进行运程的实例
+			creator属性指定java类实例生成的方式，new表示调用默认的构造函数来获得实例
+			javascript属性指定javascript代码访问对象时使用的名称
+		param标签表示要公开给javascript的类名
+		include标签表示要公开给javascript的方法，不指定则表示公开所有方法
+		exclude标签表示防止javascript访问的方法。
+	
+	<allow> 
+		<create javascript="hello" creator="new">
+			<param name="class" value="Hcom.star.dwr.test.HelloWorld"/>
+			<include method="getMessage"/>
+			<exclude method="getInformation"/>
+		</create>
+	</allow>  -->
+
+	<allow>  
+	    <create creator="new" scope="application">  
+	      <param name="class" value="com.star.dwr.test.Clock"/>  
+	    </create>  
+	  </allow>  
+</dwr>
