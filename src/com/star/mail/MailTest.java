@@ -9,11 +9,12 @@ public class MailTest {
 	      mailInfo.setMailServerPort("465");    
 	      mailInfo.setValidate(true);    
 	      mailInfo.setUserName("593415494@qq.com");    
-	      mailInfo.setPassword("88888");//您的邮箱密码    
+	      mailInfo.setPassword("333");//您的邮箱密码    
 	      mailInfo.setFromAddress("593415494@qq.com");    
 	      mailInfo.setToAddress("553613627@qq.com");    
 	      mailInfo.setSubject("哈哈");    
-	      mailInfo.setContent("哈哈");    
+	      mailInfo.setContent("哈哈"); 
+	      mailInfo.setAttachFileNames(new String[]{"D://8uftp.xml"});
 	     
 	      //这个类主要来发送邮件   
 	      SimpleMailSender sms = new SimpleMailSender();   

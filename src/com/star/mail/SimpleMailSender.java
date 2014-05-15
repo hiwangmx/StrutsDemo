@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.Address;
 import javax.mail.BodyPart;
 import javax.mail.Message;
@@ -85,6 +88,19 @@ public class SimpleMailSender {
 			html.setContent(mailInfo.getContent(), "text/html;charset=utf-8");
 			multiPart.addBodyPart(html);
 			
+			/**
+			 * 添加附件
+			 */
+			if(mailInfo.getAttachFileNames() != null && mailInfo.getAttachFileNames().length > 0){
+				for(String fileName : mailInfo.getAttachFileNames()){
+					BodyPart attachFile = new MimeBodyPart();
+					DataSource dataSource = new FileDataSource(fileName);
+					attachFile.setDataHandler(new DataHandler(dataSource));
+					attachFile.setFileName(fileName);
+					multiPart.addBodyPart(attachFile);
+				}
+			}
+			
 			message.setContent(multiPart);
 			Transport.send(message);
 			logger.info("结束发送html邮件");
@@ -98,6 +114,26 @@ public class SimpleMailSender {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * 异步发送邮件
+	 * @param mailInfo
+	 */
+	public void sendMailByAsynchronous(final MailInfo mailInfo){
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					sendHtmlMail(mailInfo);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}).start();
 	}
 	
 }
